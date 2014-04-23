@@ -6,8 +6,8 @@ require "client"
 module SharingCounter
   extend Configuration
 
-  def self.get_count(url,options=Configuration::NETWORKS_KEYS)
-    client = Client.new(url,options)
+  def self.get_count(url,networks=Configuration::NETWORKS_KEYS)
+    client = Client.new(url,networks)
     client.get_count
   end
 
