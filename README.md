@@ -1,9 +1,9 @@
-sharing_counter
+Sharing counter
 ===============
 
 
 Installation
-====
+----
 
 First start by adding this gem to your Gemfile:
 
@@ -17,7 +17,7 @@ $ bundle
 
 
 Configuring
-=======
+----
 
 For a Rails app, your config/initializers/sharing_counter.rb file should look like this:
 ``` ruby
