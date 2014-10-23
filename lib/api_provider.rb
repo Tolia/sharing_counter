@@ -1,4 +1,4 @@
-require 'rest_client'
+require 'faraday'
 
 module SharingCounter
   module API
@@ -20,13 +20,19 @@ module SharingCounter
 
       def count
         response = request
-        parse response if response && response.code == 200
+        parse response.body if response.body && response.status == 200
       end
 
       private
 
       def request
-        RestClient::Request.execute method: :get, url: URI.escape( request_url ), timeout: @timeout, open_timeout: @open_timeout rescue nil
+        Faraday.get do |r|
+          r.url URI.escape(request_url)
+          r.options = {
+            timeout:      @timeout,
+            open_timeout: @open_timeout
+          }
+        end
       end
 
       def request_url

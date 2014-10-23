@@ -16,7 +16,7 @@ describe SharingCounter do
     stub_get! "http://vk.com/widget_like.php?app=#{ @app_id }&page=0&type=mini&url=#{ @url }", "vk.html.erb"
   end
 
-  before :each do
+  before do
     @url    = "http://sharing.el"
     @count  = 100
     @app_id = 1
