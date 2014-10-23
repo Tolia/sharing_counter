@@ -1,5 +1,5 @@
 require 'rubygems'
-require 'fakeweb'
+require 'webmock/rspec'
 # Configure Rails Environment
 ENV["RAILS_ENV"] = "test"
 
@@ -10,9 +10,12 @@ def fixture_file(filename)
 end
 
 def stub_get!(url, filename, options={})
-  opts = {
+  response_opts = {
     body: fixture_file(filename),
-    content_type: 'application/json; charset=utf-8'
+    headers: {
+      "Content-Type" => 'application/json; charset=utf-8'
+    },
+    status: 200
   }.merge(options)
-  FakeWeb.register_uri :get, url, opts
+  stub_request(:get, url).to_return response_opts
 end

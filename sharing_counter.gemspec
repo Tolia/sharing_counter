@@ -17,10 +17,10 @@ Gem::Specification.new do |s|
   s.test_files = Dir["test/**/*"]
 
   s.add_development_dependency 'rspec'
-  s.add_development_dependency "fakeweb", ["~> 1.3"]
+  s.add_development_dependency "webmock"
 
   s.add_runtime_dependency 'activesupport'
   s.add_runtime_dependency 'multi_json'
-  s.add_runtime_dependency 'rest-client'
+  s.add_runtime_dependency 'faraday'
 
 end
