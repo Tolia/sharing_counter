@@ -11,10 +11,14 @@ module SharingCounter
 
     def initialize(sharing_url, networks=[])
       @sharing_url = sharing_url
-      networks.each do |network|
-        network_api = "SharingCounter::API::#{network.to_s.capitalize }".constantize
-        send "#{network}=", network_api.new(sharing_url)
+      threads = []
+      networks.each_with_index do |network, i|
+        threads << Thread.new(i) do |i|
+          network_api = "SharingCounter::API::#{network.to_s.capitalize }".constantize
+          send "#{network}=", network_api.new(sharing_url)
+        end
       end
+      threads.each(&:join)
     end
 
     def get_count
