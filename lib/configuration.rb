@@ -24,7 +24,6 @@ module SharingCounter
 
     DEFAULT_TIMEOUT      = 2
     DEFAULT_OPEN_TIMEOUT = 2
-    DEFAULT_MEASUREMENT = 'count'
 
     attr_accessor *NETWORKS_KEYS
 
