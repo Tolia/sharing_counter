@@ -8,7 +8,7 @@ Installation
 First start by adding this gem to your Gemfile:
 
 ``` ruby
-gem 'sharing_counter', github: 'Tolia/sharing_counter'
+gem 'sharing_counter'
 ```
 And then execute
 ```
