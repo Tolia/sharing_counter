@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = SharingCounter::VERSION
   s.authors     = ["Tolia Demidov"]
   s.email       = ["toliademidov@gmail.com"]
-  s.homepage    = "github.com/Tolia/sharing_counter"
+  s.homepage    = "http://github.com/Tolia/sharing_counter"
   s.summary     = "Social Counter."
   s.description = "This simple Ruby function allows the user to display the amount of times that an URL have been shared on different social networks."
 
