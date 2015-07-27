@@ -2,16 +2,16 @@ module SharingCounter
   module API
     class Facebook < APIprovider
 
-      DEFAULT_MEASUREMENT = "total_count"
+      DEFAULT_MEASUREMENT = "share_count"
 
       private
 
       def request_url
-        "http://api.ak.facebook.com/restserver.php?v=1.0&method=links.getStats&urls=#{ @sharing_url }&format=json"
+        "https://graph.facebook.com/fql?q=SELECT share_count FROM link_stat WHERE url='#{ @sharing_url }'"
       end
 
       def parse(page)
-        JSON.parse(page)[0][@measurement].to_i
+        JSON.parse(page)['data'][0][@measurement].to_i
       end
 
     end
