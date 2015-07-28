@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    sharing_counter (0.0.1)
+    sharing_counter (0.0.4)
       activesupport
       faraday
       multi_json

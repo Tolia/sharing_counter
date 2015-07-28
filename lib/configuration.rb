@@ -7,7 +7,8 @@ module SharingCounter
     NETWORKS_KEYS = [
       :facebook,
       :twitter,
-      :vk
+      :vk,
+      :ok
     ].freeze
 
     DEFAULT_SETTINGS_KEYS = [
