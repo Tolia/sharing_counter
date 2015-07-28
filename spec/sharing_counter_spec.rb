@@ -16,6 +16,10 @@ describe SharingCounter do
     stub_get! "http://vk.com/widget_like.php?app=#{ @app_id }&page=0&type=mini&url=#{ @url }", "vk.html.erb"
   end
 
+  def stub_requests_ok!
+    stub_get! "https://connect.ok.ru/dk?st.cmd=extLike&uid=odklcnt0&ref=#{ @url }", "ok.jsonp.erb"
+  end
+
   before do
     @url    = "http://sharing.el"
     @count  = 100
@@ -29,10 +33,12 @@ describe SharingCounter do
     stub_requests_facebook!
     stub_requests_twitter!
     stub_requests_vk!
+    stub_requests_ok!
     counter = SharingCounter.get_count @url
     expect(counter[:facebook]).to eq @count
     expect(counter[:twitter]).to  eq @count
     expect(counter[:vk]).to       eq @count
+    expect(counter[:ok]).to       eq @count
   end
 
   it "facebook total count" do
@@ -41,6 +47,7 @@ describe SharingCounter do
     expect(counter[:facebook]).to eq @count
     expect(counter[:twitter]).to  be_nil
     expect(counter[:vk]).to       be_nil
+    expect(counter[:ok]).to       be_nil
   end
 
   it "counting twitter sharing" do
@@ -49,6 +56,7 @@ describe SharingCounter do
     expect(counter[:facebook]).to be_nil
     expect(counter[:twitter]).to  eq @count
     expect(counter[:vk]).to       be_nil
+    expect(counter[:ok]).to       be_nil
   end
 
   it "counting vk sharing" do
@@ -57,7 +65,16 @@ describe SharingCounter do
     expect(counter[:facebook]).to be_nil
     expect(counter[:twitter]).to  be_nil
     expect(counter[:vk]).to       eq @count
+    expect(counter[:ok]).to       be_nil
   end
 
+  it "counting odnoklassniki sharing" do
+    stub_requests_ok!
+    counter = SharingCounter.get_count @url, [:ok]
+    expect(counter[:facebook]).to be_nil
+    expect(counter[:twitter]).to  be_nil
+    expect(counter[:vk]).to       be_nil
+    expect(counter[:ok]).to       eq @count
+  end
 
 end

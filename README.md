@@ -32,7 +32,7 @@ Usage
 -----
 ``` ruby
 > counter = SharingCounter.get_count "http://theoryandpractice.ru"
-=> {:url=>"http://theoryandpractice.ru", :data=>2014-04-29 15:29:51 +0400, :facebook=>1984, :twitter=>825, :vk=>0, :delay=>0.570361}
+=> {:url=>"http://theoryandpractice.ru", :data=>2014-04-29 15:29:51 +0400, :facebook=>1984, :twitter=>825, :vk=>0, :ok=>0, :delay=>0.570361}
 
 > counter = SharingCounter.get_count "http://theoryandpractice.ru", [:facebook]
 => {:url=>"http://theoryandpractice.ru", :data=>2014-04-29 15:31:22 +0400, :facebook=>1984, :delay=>0.443431}
@@ -42,4 +42,7 @@ Usage
 
 > counter = SharingCounter.get_count "http://theoryandpractice.ru", [:vk]
 => {:url=>"http://theoryandpractice.ru", :data=>2014-04-29 15:31:02 +0400, :vk=>0, :delay=>0.061093}
+
+> counter = SharingCounter.get_count "http://theoryandpractice.ru", [:ok]
+=> {:url=>"http://theoryandpractice.ru", :data=>2014-04-29 15:31:02 +0400, :ok=>0, :delay=>0.061093}
 ```
