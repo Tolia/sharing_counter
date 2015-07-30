@@ -5,7 +5,7 @@ require File.expand_path( "../lib/sharing_counter.rb" , File.dirname(__FILE__))
 describe SharingCounter do
 
   def stub_requests_facebook!
-    stub_get! "http://graph.facebook.com/?id=#{ @url }", "facebook.json.erb"
+    stub_get! "https://api.facebook.com/method/fql.query?format=json&query=select commentsbox_count, click_count, total_count, comment_count, like_count, share_count from link_stat where url=\'#{@url}\'", "facebook.json.erb"
   end
 
   def stub_requests_twitter!
@@ -13,7 +13,7 @@ describe SharingCounter do
   end
 
   def stub_requests_vk!
-    stub_get! "http://vk.com/widget_like.php?app=#{ @app_id }&page=0&type=mini&url=#{ @url }", "vk.html.erb"
+    stub_get! "https://vk.com/share.php?act=count&index=1&url=#{ @url }", "vk.html.erb"
   end
 
   def stub_requests_ok!

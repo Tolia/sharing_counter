@@ -23,7 +23,7 @@ module SharingCounter
         parse response.body if response.body && response.status == 200
       end
 
-      private
+    private
 
       def request
         Faraday.get do |r|
@@ -40,6 +40,12 @@ module SharingCounter
 
       def parse(page)
         JSON.parse(page)[@measurement].to_i
+      end
+
+      def sharing_url
+        url = URI.parse(@sharing_url)
+        url = "http://" + url.to_s unless url.scheme
+        @url ||= url.to_s
       end
 
     end
