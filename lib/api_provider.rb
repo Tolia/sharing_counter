@@ -44,8 +44,8 @@ module SharingCounter
 
       def sharing_url
         url = URI.parse(@sharing_url)
-        url = "http://" + url unless url.scheme
-        @url ||= url
+        url = "http://" + url.to_s unless url.scheme
+        @url ||= url.to_s
       end
 
     end
