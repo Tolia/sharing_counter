@@ -13,7 +13,7 @@ describe SharingCounter do
   end
 
   def stub_requests_vk!
-    stub_get! "http://vk.com/widget_like.php?app=#{ @app_id }&page=0&type=mini&url=#{ @url }", "vk.html.erb"
+    stub_get! "https://vk.com/share.php?act=count&index=1&url=#{ @url }", "vk.html.erb"
   end
 
   before :each do
