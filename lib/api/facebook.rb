@@ -2,7 +2,7 @@ module SharingCounter
   module API
     class Facebook < APIprovider
 
-      DEFAULT_MEASUREMENT = "shares"
+      DEFAULT_MEASUREMENT = "total_count"
 
       private
 
@@ -11,7 +11,7 @@ module SharingCounter
       end
 
       def parse(page)
-        JSON.parse(page)[@measurement].to_i
+        JSON.parse(page)[0][@measurement].to_i
       end
 
     end
