@@ -7,7 +7,8 @@ module SharingCounter
     NETWORKS_KEYS = [
       :facebook,
       :twitter,
-      :vk
+      :vk,
+      :ok
     ].freeze
 
     DEFAULT_SETTINGS_KEYS = [
@@ -49,7 +50,7 @@ module SharingCounter
       NETWORKS_KEYS.each do |network_key|
         network = {}
         DEFAULT_SETTINGS_KEYS.each do |key|
-          network[key] = default(key)
+          network[key] = "SharingCounter::Configuration::#{default(key)}".constantize
         end
         INDIVIDUAL_SETTINGS_KEYS.each do |key|
           network[key] = "SharingCounter::API::#{network_key.to_s.capitalize }::#{ default(key) }".constantize
@@ -63,6 +64,5 @@ module SharingCounter
     def default(key)
       "DEFAULT_#{ key.to_s.upcase }"
     end
-
   end
 end
