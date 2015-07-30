@@ -7,7 +7,7 @@ module SharingCounter
       private
 
       def request_url
-        "https://connect.ok.ru/dk?st.cmd=extLike&uid=odklcnt0&ref=#{ @sharing_url }"
+        "https://connect.ok.ru/dk?st.cmd=extLike&uid=odklcnt0&ref=#{ sharing_url }"
       end
 
       def parse(page)
