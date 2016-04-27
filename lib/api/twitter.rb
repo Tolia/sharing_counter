@@ -1,13 +1,16 @@
 module SharingCounter
   module API
-    class Twitter < APIprovider
-
-      DEFAULT_MEASUREMENT = "count"
+    class Twitter < Provider
+      JSON_KEY = "count"
 
       private
 
       def request_url
-        "http://urls.api.twitter.com/1/urls/count.json?url=#{ sharing_url }"
+        "http://urls.api.twitter.com/1/urls/count.json?url=#{ @sharing_url }"
+      end
+
+      def parse(page)
+        JSON.parse(page)[JSON_KEY].to_i
       end
 
     end

@@ -23,7 +23,6 @@ For a Rails app, your config/initializers/sharing_counter.rb file should look li
 ``` ruby
 SharingCounter.configure do |config|
  config.vk = { app_id: ENV['VK_API_KEY'] }
- config.facebook = { measurement: ENV['FACEBOOK_MEASUREMENT'] }
 end
 ```
 `facebook[:measurement]` can assume any value from `'total_count'`, `'like_count'`, `'comment_count'` and `'total_count'`. The default is `'total_count'`

@@ -1,13 +1,10 @@
 module SharingCounter
   module API
-    class Ok < APIprovider
-
-      DEFAULT_MEASUREMENT = ''
-
+    class Ok < Provider
       private
 
       def request_url
-        "https://connect.ok.ru/dk?st.cmd=extLike&uid=odklcnt0&ref=#{ sharing_url }"
+        "https://connect.ok.ru/dk?st.cmd=extLike&uid=odklcnt0&ref=#{ @sharing_url }"
       end
 
       def parse(page)
