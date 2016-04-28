@@ -13,14 +13,14 @@ Gem::Specification.new do |s|
   s.summary     = "Social Counter."
   s.description = "This simple Ruby function allows the user to display the amount of times that an URL have been shared on different social networks."
 
-  s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["lib/sharing_counter.rb", "MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
+  s.require_paths = ["lib"]
 
-  s.add_development_dependency 'rspec'
+  s.required_ruby_version = '>= 2.0'
+
+  s.add_development_dependency "rspec"
   s.add_development_dependency "webmock"
-
-  s.add_runtime_dependency 'activesupport'
-  s.add_runtime_dependency 'multi_json'
-  s.add_runtime_dependency 'faraday'
+  s.add_development_dependency "rake"
 
 end

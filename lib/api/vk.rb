@@ -1,11 +1,11 @@
 module SharingCounter
   module API
-    class Vk < APIprovider
+    class Vk < Provider
 
       private
 
       def request_url
-        "https://vk.com/share.php?act=count&index=1&url=#{ sharing_url }"
+        "https://vk.com/share.php?act=count&index=1&url=#{ @sharing_url }"
       end
 
       def parse(page)

@@ -1,7 +1,7 @@
-require 'rubygems'
-require "configuration"
+require_relative "./sharing_counter/version.rb"
 require "api_provider"
 require "client"
+require "configuration"
 
 module SharingCounter
   extend Configuration
@@ -10,5 +10,4 @@ module SharingCounter
     client = Client.new(url, networks)
     client.get_count
   end
-
 end

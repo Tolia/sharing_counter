@@ -1,11 +1,11 @@
 #encoding: utf-8
 require 'spec_helper'
-require File.expand_path( "../lib/sharing_counter.rb" , File.dirname(__FILE__))
+require File.expand_path( "../../lib/sharing_counter.rb" , File.dirname(__FILE__))
 
 describe SharingCounter do
 
   def stub_requests_facebook!
-    stub_get! "https://api.facebook.com/method/fql.query?format=json&query=select commentsbox_count, click_count, total_count, comment_count, like_count, share_count from link_stat where url=\'#{@url}\'", "facebook.json.erb"
+    stub_get! "https://api.facebook.com/method/fql.query?format=json&query=select total_count from link_stat where url=\'#{@url}\'", "facebook.json.erb"
   end
 
   def stub_requests_twitter!
@@ -34,7 +34,7 @@ describe SharingCounter do
     stub_requests_twitter!
     stub_requests_vk!
     stub_requests_ok!
-    counter = SharingCounter.get_count @url
+    counter = SharingCounter.get_count @url, [:facebook, :twitter, :vk, :ok]
     expect(counter[:facebook]).to eq @count
     expect(counter[:twitter]).to  eq @count
     expect(counter[:vk]).to       eq @count

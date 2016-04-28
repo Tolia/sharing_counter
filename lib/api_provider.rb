@@ -1,53 +1,44 @@
-require 'faraday'
+require 'net/http'
+require 'json'
 
 module SharingCounter
   module API
-    class APIprovider
+    class Provider
+      SETTINGS_KEYS = []
 
-      ATTRS               = [:sharing_url]
-      DEFAULT_MEASUREMENT = false
-      DEFAULT_APP_ID      = false
-
-      attr_accessor *(ATTRS + ::SharingCounter::Configuration::SETTINGS_KEYS)
+      attr_accessor *SETTINGS_KEYS
 
       def initialize(sharing_url)
         @sharing_url = sharing_url
-        options      = SharingCounter.options[self.class.name.demodulize.downcase.to_sym]
-        options.each do |key,val|
-          send "#{key}=", val
+        SharingCounter.options[name].each do |key, val|
+          instance_variable_set "@#{key}", val
         end
       end
 
-      def count
-        response = request
-        parse response.body if response.body && response.status == 200
+
+      def get_count
+        # return [count, errors]
+        res = Net::HTTP.get_response URI.parse(request_url)
+        res['User-Agent'] = SharingCounter.options[:user_agent]
+        [parse(res.body), nil]
+      rescue SocketError => e
+        [nil, e]
       end
 
     private
 
-      def request
-        Faraday.get do |r|
-          r.url URI.escape(request_url)
-          r.options = {
-            timeout:      @timeout,
-            open_timeout: @open_timeout
-          }
-        end
+
+      def name
+        self.class.name.split('::').last.downcase.to_sym
       end
 
       def request_url
+        raise ''
       end
 
       def parse(page)
-        JSON.parse(page)[@measurement].to_i
+        raise ''
       end
-
-      def sharing_url
-        url = URI.parse(@sharing_url)
-        url = "http://" + url.to_s unless url.scheme
-        @url ||= url.to_s
-      end
-
     end
   end
 end
