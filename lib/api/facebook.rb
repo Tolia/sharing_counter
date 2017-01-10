@@ -1,16 +1,16 @@
 module SharingCounter
   module API
     class Facebook < Provider
-      JSON_KEY = "total_count"
+      JSON_KEY = "share_count"
 
       private
 
       def request_url
-        "https://api.facebook.com/method/fql.query?format=json&query=select #{ json_key } from link_stat where url=\'#{ @sharing_url }\'"
+        "https://graph.facebook.com/?id=#{ @sharing_url }"
       end
 
       def parse(page)
-        JSON.parse(page)[0][json_key].to_i
+        JSON.parse(page)['share'][json_key].to_i
       end
 
       def json_key

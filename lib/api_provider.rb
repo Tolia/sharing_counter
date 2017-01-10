@@ -21,7 +21,7 @@ module SharingCounter
         res = Net::HTTP.get_response URI.parse(request_url)
         res['User-Agent'] = SharingCounter.options[:user_agent]
         [parse(res.body), nil]
-      rescue SocketError => e
+      rescue => e
         [nil, e]
       end
 

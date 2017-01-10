@@ -6,7 +6,7 @@ module SharingCounter
       private
 
       def request_url
-        "http://urls.api.twitter.com/1/urls/count.json?url=#{ @sharing_url }"
+        "https://urls.api.twitter.com/1/urls/count.json?url=#{ @sharing_url }"
       end
 
       def parse(page)

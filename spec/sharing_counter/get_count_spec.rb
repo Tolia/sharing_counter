@@ -5,11 +5,11 @@ require File.expand_path( "../../lib/sharing_counter.rb" , File.dirname(__FILE__
 describe SharingCounter do
 
   def stub_requests_facebook!
-    stub_get! "https://api.facebook.com/method/fql.query?format=json&query=select total_count from link_stat where url=\'#{@url}\'", "facebook.json.erb"
+    stub_get! "https://graph.facebook.com/?id=#{@url}", "facebook.json.erb"
   end
 
   def stub_requests_twitter!
-    stub_get! "http://urls.api.twitter.com/1/urls/count.json?url=#{ @url }", "twitter.json.erb"
+    stub_get! "https://urls.api.twitter.com/1/urls/count.json?url=#{ @url }", "twitter.json.erb"
   end
 
   def stub_requests_vk!
